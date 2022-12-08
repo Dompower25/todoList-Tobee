@@ -1,5 +1,5 @@
 
-import LearnBar from './components/LearnBar/LearnBar'
+import LearnBar from './components/LearnBar'
 
 
 export default function Home() {
