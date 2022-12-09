@@ -2,17 +2,21 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div>
-      <span>2 item left</span>
-      <Link href="/">
-        <button>All</button>
-      </Link>
-      <Link href="/Active">
-        <button> Active</button>
-      </Link>
-      <Link href="/Compoleted">
-        <button>Compoleted</button>
-      </Link>
+    <div className="footer">
+      <span className="textTodoItem">2 item left</span>
+      <div className="bntBox">
+        <button className="allBtn btn">
+          <Link href="/">All</Link>
+        </button>
+
+        <button className="activeBnt btn">
+          <Link href="/Active">Active</Link>
+        </button>
+
+        <button className="completeBtn btn">
+          <Link href="/Compoleted">Complete</Link>
+        </button>
+      </div>
     </div>
   );
 };
