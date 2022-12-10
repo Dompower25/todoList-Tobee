@@ -8,7 +8,9 @@ export const useFilterTodo = (todos, completed) => {
         if (completed === false) {
             return todos.filter(todo =>!todo.completed);
         }
-        return todos;
+        if(completed === null) {
+            return todos;
+        }
     }, [todos, completed])
     return complete;
 }

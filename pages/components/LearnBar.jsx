@@ -2,37 +2,65 @@ import HeaderTodo from "./HeaderTodo";
 import InputTodoText from "./InputTodoText";
 import Todo from "./Todo";
 import Footer from "./Footer";
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFilterTodo } from "../hooks/useFilterTodo";
 import { todos } from "../api/todoList";
 
 const LearnBar = () => {
   const [todoListAll, setTodoListAll] = useState(todos || []);
+  const [activeFilter, setActiveFilter] = useState(null);
 
-  const complet = () => {
-    const filteredCompletedTodos = useFilterTodo(todos || [], true);
-    setTodoListAll(filteredCompletedTodos);
+  const filteredTodo = (array, param) => {
+    if (param === true) {
+      return array.filter((todo) => todo.completed);
+    }
+    if (param === false) {
+      return array.filter((todo) => !todo.completed);
+    }
+    return array;
+  };
+
+  const todoList = useMemo(() => {
+    return filteredTodo(todoListAll, activeFilter);
+  }, [todoListAll, activeFilter]);
+
+  const all = () => {
+    setActiveFilter(null);
   };
 
   const active = () => {
-    const filteredActiveTodos = useFilterTodo(todos || [], false);
-    setTodoListAll(filteredActiveTodos);
+    setActiveFilter(false);
+  };
+  const completed = () => {
+    setActiveFilter(true);
   };
 
-  useEffect(() => {
-    setTodoListAll();
-  }, [input]);
+  const onDelete = (id) => {
+    setTodoListAll(todoListAll.filter((todo) => todo.id !== id));
+  };
+
+  const onInsert = (newObj) => {
+    setTodoListAll([newObj, ...todoListAll]);
+  };
+
   return (
     <div className="learn_bar">
       <HeaderTodo />
-      <InputTodoText />
-      {todoListAll.map(({ id, text, completed }) => (
-        <Todo text={text} key={id} id={id} completed={completed} />
+      <InputTodoText onInsert={onInsert} />
+      {todoList.map(({ id, text, completed }) => (
+        <Todo
+          text={text}
+          key={id}
+          id={id}
+          completed={completed}
+          onDelete={onDelete}
+        />
       ))}
       {todoListAll.length ? (
         <Footer
-          complet={complet}
+          all={all}
           active={active}
+          complete={completed}
           lenthItems={todoListAll.length}
         />
       ) : (

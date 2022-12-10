@@ -5,11 +5,14 @@ import { useState } from "react";
 import { NoEncryption } from "@mui/icons-material";
 import Close from "./icons/Close";
 
-const Todo = ({ text, completed }) => {
+const Todo = ({ text, id, completed, onDelete }) => {
   const [compl, setCompl] = useState(completed);
 
   const checked = () => {
     compl ? setCompl(false) : setCompl(true);
+  };
+  const clickDelete = () => {
+    onDelete(id);
   };
 
   let classBtn = "textTodo";
@@ -23,7 +26,7 @@ const Todo = ({ text, completed }) => {
       </button>
       <div className={classBtn}> {text} </div>
 
-      <button className="deleteBtn">
+      <button onClick={clickDelete} className="deleteBtn">
         <Close />
       </button>
     </div>

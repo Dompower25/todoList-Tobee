@@ -1,7 +1,23 @@
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/system";
+import { useState, useCallback } from "react";
 
-const InputTodoText = () => {
+const InputTodoText = ({ onInsert }) => {
+  const [bodyText, setBodyText] = useState("");
+
+  const enterDown = (e) => {
+    if (e.key === "Enter") {
+      onAddNote();
+    }
+  };
+
+  const onAddNote = () => {
+    if (bodyText.length > 0) {
+      const newTodo = { id: Date.now(), text: bodyText, completed: false };
+      onInsert(newTodo);
+      setBodyText("");
+    }
+  };
   return (
     <Box>
       <ArrowForwardIosIcon
@@ -13,7 +29,13 @@ const InputTodoText = () => {
           margin: "15px 0 0 10px",
         }}
       />
-      <input className="inputText" placeholder="What needs to be done?" />
+      <input
+        value={bodyText}
+        onChange={(e) => setBodyText(e.target.value)}
+        className="inputText"
+        placeholder="What needs to be done?"
+        onKeyDown={enterDown}
+      />
     </Box>
   );
 };
