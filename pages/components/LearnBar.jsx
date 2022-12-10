@@ -2,9 +2,8 @@ import HeaderTodo from "./HeaderTodo";
 import InputTodoText from "./InputTodoText";
 import Todo from "./Todo";
 import Footer from "./Footer";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useFilterTodo } from "../hooks/useFilterTodo";
-import { todos } from "../api/todoList";
+import { useMemo, useState } from "react";
+import { todos } from "../../todoList";
 
 const LearnBar = () => {
   const [todoListAll, setTodoListAll] = useState(todos || []);

@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { todos } from "../api/todoList";
-
 const Footer = ({ lenthItems, all, active, complete }) => {
   return (
     <div className="footer">

@@ -1,5 +1,4 @@
-
-import LearnBar from './components/LearnBar'
+import LearnBar from "./components/LearnBar";
 
 
 export default function Home() {

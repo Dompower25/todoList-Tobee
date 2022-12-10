@@ -1,8 +1,6 @@
-import { Checkbox } from "@mui/material";
 import Circle from "./icons/Circle";
 import CircleCkecked from "./icons/CircleCkecked";
 import { useState } from "react";
-import { NoEncryption } from "@mui/icons-material";
 import Close from "./icons/Close";
 
 const Todo = ({ text, id, completed, onDelete }) => {
