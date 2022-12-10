@@ -1,20 +1,19 @@
 import Link from "next/link";
+import { todos } from "../api/todoList";
 
-const Footer = () => {
+const Footer = ({ lenthItems, complet, active }) => {
   return (
     <div className="footer">
-      <span className="textTodoItem">2 item left</span>
+      <span className="textTodoItem">{lenthItems} item left</span>
       <div className="bntBox">
-        <button className="allBtn btn">
-          <Link href="/">All</Link>
+        <button className="allBtn btn">All</button>
+
+        <button onClick={active} className="activeBnt btn">
+          Active
         </button>
 
-        <button className="activeBnt btn">
-          <Link href="/Active">Active</Link>
-        </button>
-
-        <button className="completeBtn btn">
-          <Link href="/Compoleted">Complete</Link>
+        <button onClick={complet} className="completeBtn btn">
+          Complete
         </button>
       </div>
     </div>

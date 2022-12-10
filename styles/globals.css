@@ -99,19 +99,7 @@ a {
   padding: 0 20px;
   font-size: 24px;
   color: rgb(90, 88, 88);
-}
-.deleteBtn {
-  border: none;
-  background: none;
-  padding: 5px;
-  text-align: center;
-}
-
-.deleteBtn::before {
-  content: "X";
-  font-size: 15px;
-  font-weight: 600;
-  color: #777;
+  transition: 0.5s ease;
 }
 
 .checkBtn {
@@ -119,4 +107,24 @@ a {
   border: 0;
   background: none;
   text-decoration: none;
+}
+.deleteBtn {
+  border: none;
+  background: none;
+  padding: 5px;
+  text-align: center;
+  color: rgb(121, 118, 118);
+}
+
+.deleteBtn:hover {
+  transition: 0.5s ease;
+  color: rgb(73, 72, 72);
+}
+
+.anActive {
+  text-decoration: line-through;
+  color: rgb(201, 198, 198);
+}
+
+.activeLink {
 }
